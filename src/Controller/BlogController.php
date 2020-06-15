@@ -102,4 +102,14 @@ class BlogController extends AbstractController
             'commentForm' => $form->createView()
         ]);
     }
+    /**
+     * @Route("/article/{id}" , name="delete_article", methods={"DELETE", "GET"})
+     */
+    public function deleteArticle(Article $article, Request $reqest, EntityManagerInterface $manager)
+    {
+        $manager->remove($article);
+        $manager->flush();
+
+        return $this->redirectToRoute('blog');
+    }
 }
