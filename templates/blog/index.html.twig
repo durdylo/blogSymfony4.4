@@ -6,15 +6,17 @@
 <div class="row">
     {% for article in articles %}
 
-    <article class="col-4">
-        <h2>{{ article.title }}</h2>
-        <div class="metadata">{{article.createdAt | date('d/m/Y') }} à {{article.createdAt | date('H:i') }} </div>
+    <article class="card col-4">
+    <div class="card-body">
+        <h2 class="card-title">{{ article.title }}</h2>
+        <div class="metadata card-subtitle mb-2 text-muted">{{article.createdAt | date('d/m/Y') }} à {{article.createdAt | date('H:i') }} </div>
         <div class="content">
-            <img src="{{article.image}}" alt="">
-            {{ article.content | raw }}
+            <img src="{{article.image}}" alt="" class="card-img-top">
+           <div class="card-text">{{ article.content | raw }}</div> 
             <a href="{{path('blog_show', {'id' : article.id})}}" class="btn btn-primary">lire la suite</a>
             <a href="{{path('delete_article', {'id' : article.id})}}" class="btn btn-danger">Suprimer article</a>
         </div>
+    </div>
     </article>
     {% endfor %}
 </div>
